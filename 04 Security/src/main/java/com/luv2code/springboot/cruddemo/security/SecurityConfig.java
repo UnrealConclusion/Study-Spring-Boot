@@ -42,7 +42,19 @@ public class SecurityConfig {
 	/* Database User Authentication */
 	@Bean
 	public UserDetailsManager userDetailsManager(DataSource dataSource) {
-		return new JdbcUserDetailsManager(dataSource);
+		JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+		// query to find users by username 		
+		jdbcUserDetailsManager.setUsersByUsernameQuery(
+			"SELECT user_id, pw, active FROM members WHERE user_id=?"
+		);
+
+		// query to find authorities by username 
+		jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+			"SELECT user_id, role FROM roles WHERE user_id=?"
+		);
+
+		return jdbcUserDetailsManager;
 	}
 
 	@Bean
