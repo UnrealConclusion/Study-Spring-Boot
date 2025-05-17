@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Hello</title>
+        <!-- Reference Local CSS File -->
+        <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+    </head>
+    <body>
+        <p th:text="'Student Name: ' + ${param.studentName}"/>
+        <p th:text="'Message: ' + ${message}">
+    </body>
+</html>
