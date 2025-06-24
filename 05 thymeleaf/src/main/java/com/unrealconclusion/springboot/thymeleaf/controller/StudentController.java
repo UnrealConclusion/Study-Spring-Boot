@@ -26,13 +26,34 @@ public class StudentController {
         // add student object to the model
         theModel.addAttribute("student", theStudent);
 
-        // add list of countries to model
+        // add list of countries to the model
         ArrayList<String> countries = new ArrayList<String>();
         countries.add("Brazil");
         countries.add("France");
         countries.add("Germany");
         countries.add("India");
+        countries.add("Mexico");
+        countries.add("Spain");
+        countries.add("United States");
         theModel.addAttribute("countries", countries);
+
+        // add a list of programming languages to the model
+        ArrayList<String> programmingLanguages = new ArrayList<String>();
+        programmingLanguages.add("Go");
+        programmingLanguages.add("Java");
+        programmingLanguages.add("Python");
+        programmingLanguages.add("Rust");
+        programmingLanguages.add("TypeScript");
+        theModel.addAttribute("programmingLanguages", programmingLanguages);
+
+        // add a list of operating systems to the model
+        ArrayList<String> operatingSystems = new ArrayList<String>();
+        operatingSystems.add("Linux");
+        operatingSystems.add("MacOS");
+        operatingSystems.add("Microsoft Windows");
+        operatingSystems.add("Android");
+        operatingSystems.add("iOS");
+        theModel.addAttribute("operatingSystems", operatingSystems);
 
         return "student-form";
     }
@@ -41,7 +62,7 @@ public class StudentController {
     public String processForm(@ModelAttribute("student") Student theStudent) {
 
         // log the input data
-        System.out.println("theStudent: " + theStudent.getFirstName());
+        System.out.println("theStudent: " + theStudent.getFirstName() + theStudent.getLastName());
 
         return "student-confirmation";
     }
