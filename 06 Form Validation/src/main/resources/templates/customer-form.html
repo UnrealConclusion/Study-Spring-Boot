@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration Form</title>
+    <style>
+        .container {
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: space-between;
+            width: 500px;
+            border: 2px solid black;
+        }
+        .row {
+            margin: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .row label {
+            margin-right: 5px;
+        }
+        .btn {
+            margin: 0 auto;
+            display: block;
+        }
+        .error { 
+            color: red; 
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/processForm}" th:object="${customer}" method="POST" class="container">
+        <div class="row">
+            <i>Fill out the form. Asterisk (*) means required.</i>
+        </div>
+        <div class="row">
+            <label th:for="*{firstName}">First Name:</label>
+            <input type="text" th:field="*{firstName}"/>
+        </div>
+        <div class="row">
+            <label th:for="*{lastName}">Last Name*:</label>
+            <input type="text" th:field="*{lastName}"/>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+        </div>
+        <div class="row">
+            <label th:for="*{freePasses}">Free Passes*:</label>
+            <input type="text" th:field="*{freePasses}"/>
+            <span th:if="${#fields.hasErrors('freePasses')}" th:errors="*{freePasses}" class="error"></span>
+        </div>
+        <div class="row">
+            <label th:for="*{zipcode}">Zipcode:</label>
+            <input type="text" th:field="*{zipcode}"/>
+            <span th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" class="error"></span>
+        </div>
+        <div class="row">
+            <label th:for="*{courseCode}">Course Code:</label>
+            <input type="text" th:field="*{courseCode}"/>
+            <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}" class="error"></span>
+        </div>
+        <div class="row">
+            <input class="btn" type="submit" value="Submit"/>
+        </div>
+    </form>
+
+</body>
+</html>
