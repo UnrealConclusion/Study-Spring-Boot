@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -7,3 +7,10 @@
 <body>
     <h1>Welcome to the Home Page!</h1>
     <p>This is a basic HTML template.</p>
+
+    <!-- Logout Button -->
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
