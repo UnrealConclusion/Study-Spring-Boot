@@ -16,18 +16,22 @@
     </p>
     <hr>
 
-    <!-- Link to leaders -->
-    <p>
-        <a th:href="@{/leaders}">Leadership Meeting</a>
-        (Only for Manager peeps)
-    </p>
+    <div sec:authorize="hasRole('MANAGER')">
+        <!-- Link to leaders -->
+        <p>
+            <a th:href="@{/leaders}">Leadership Meeting</a>
+            (Only for Manager peeps)
+        </p>
+    </div>
 
-    <!-- Link to admins -->
-    <p>
-        <a th:href="@{/systems}">IT Systems Meeting</a>
-        (Only for Admin peeps)
-    </p>
-
+    <div sec:authorize="hasRole('ADMIN')">
+        <!-- Link to admins -->
+        <p>
+            <a th:href="@{/systems}">IT Systems Meeting</a>
+            (Only for Admin peeps)
+        </p>
+    </div>
+    
     <!-- Logout Button -->
     <form th:action="@{/logout}" method="post">
         <button type="submit">Logout</button>
