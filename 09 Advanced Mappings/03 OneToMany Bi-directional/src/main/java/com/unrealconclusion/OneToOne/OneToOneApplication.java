@@ -1,5 +1,7 @@
 package com.unrealconclusion.OneToOne;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +27,13 @@ public class OneToOneApplication {
 			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
 			// deleteInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+			// createInstructorWithCourses(appDAO);
+			// findInstructorWithCourses(appDAO);
+			// findCoursesForInstructor(appDAO);
+			// findInstructorWithCoursesJoinFetch(appDAO);
+			// updateInstructor(appDAO);
+			// updateCourse(appDAO);
+			deleteCourse(appDAO);
 		};
 	}
 
@@ -104,5 +112,69 @@ public class OneToOneApplication {
 		System.out.println("Saving instructor: " + instructor);
 		System.out.println("the courses: " + instructor.getCourses());
 		appDAO.save(instructor);
+	}
+
+	// will throw an error 
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with id: " + id);
+
+		Instructor instructor = appDAO.findInstructorById(id);
+
+		System.out.println("instructor: " + instructor);
+		System.out.println("courses: " + instructor.getCourses()); 
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with id: " + id);
+
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("instructor: " + instructor);
+
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		System.out.println("courses: " + courses); 
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with id: " + id);
+
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(id);
+
+		System.out.println("instructor: " + instructor);
+		System.out.println("courses: " + instructor.getCourses()); 
+	};
+
+	private void updateInstructor(AppDAO appDAO) {
+		int id = 1;
+		
+		// find the instructor 
+		System.out.println("Finding instructor with id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+
+		// update the instructor 
+		System.out.println("Updating instructor with id: " + id);
+		instructor.setEmail("SquidwardTentacles@KrustyKrabs.com");
+		appDAO.update(instructor);
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int id = 10;
+
+		// find course
+		System.out.println("Finding course id: " + id);
+		Course course = appDAO.findCourseById(id);
+
+		// update course
+		System.out.println("Updating course id: " + id);
+		course.setTitle("Intro to Painting");
+		appDAO.update(course);
+	}
+
+	private void deleteCourse(AppDAO appDAO) {
+		int id = 10;
+		System.out.println("Deleting course id: " + id);
+		appDAO.deleteCourseById(id);
 	}
 }
