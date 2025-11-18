@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.unrealconclusion.AOP.dao.AccountDAO;
+import com.unrealconclusion.AOP.dao.MembershipDAO;
 
 @SpringBootApplication
 public class AopApplication {
@@ -15,13 +16,16 @@ public class AopApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		return runner -> {
-			BeforeAdviceDemo(accountDAO);
+			BeforeAdviceDemo(accountDAO, membershipDAO);
 		};
 	}
 
-	private void BeforeAdviceDemo(AccountDAO accountDAO) {
-		accountDAO.addAccount(); // business method 
+	private void BeforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+		accountDAO.addAccount(new Account(), false);
+		accountDAO.doWork();
+		membershipDAO.addAccount();
+		membershipDAO.doNothing();
 	}
 }
