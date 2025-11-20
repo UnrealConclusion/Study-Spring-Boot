@@ -25,6 +25,10 @@ public class AopApplication {
 	private void BeforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		accountDAO.addAccount(new Account(), false);
 		accountDAO.doWork();
+		accountDAO.setName("foobar");
+		accountDAO.setServiceCode("silver");
+		accountDAO.getName();
+		accountDAO.getServiceCode();
 		membershipDAO.addAccount();
 		membershipDAO.doNothing();
 	}
