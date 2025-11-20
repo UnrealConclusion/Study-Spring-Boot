@@ -6,11 +6,11 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Order(2)
+@Order(3)
 @Component
-public class MyDemoLoggingAspect {
+public class MyApiAnalyticsAspect {
     @Before("com.unrealconclusion.AOP.aspect.PointcutExpressions.thisPackageExcludeGetterSetter()")
-    public void beforeAddAccountAdvice() {
-        System.out.println("\n=====>>> Executing @Before advice on method");
+    public void performApiAnalytics() {
+        System.out.println("\n=====>>> Performing API Analytics");
     }
 }
