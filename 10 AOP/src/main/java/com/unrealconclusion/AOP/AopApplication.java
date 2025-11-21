@@ -23,10 +23,10 @@ public class AopApplication {
 	}
 
 	private void BeforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
-		accountDAO.addAccount(new Account(), false);
+		accountDAO.addAccount(new Account("Spongebob", "Gold"), false);
 		accountDAO.doWork();
-		accountDAO.setName("foobar");
-		accountDAO.setServiceCode("silver");
+		accountDAO.setName("Spongebob");
+		accountDAO.setServiceCode("420");
 		accountDAO.getName();
 		accountDAO.getServiceCode();
 		membershipDAO.addAccount();
