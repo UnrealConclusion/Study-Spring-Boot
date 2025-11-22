@@ -1,5 +1,7 @@
 package com.unrealconclusion.AOP.dao;
 
+import java.util.List;
+
 import com.unrealconclusion.AOP.Account;
 
 public interface AccountDAO {
@@ -9,4 +11,5 @@ public interface AccountDAO {
     String getName();
     void setServiceCode(String serviceCode);
     String getServiceCode();
+    List<Account> findAccounts();
 }

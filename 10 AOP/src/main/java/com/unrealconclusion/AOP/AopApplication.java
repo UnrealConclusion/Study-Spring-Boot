@@ -1,5 +1,7 @@
 package com.unrealconclusion.AOP;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +20,8 @@ public class AopApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		return runner -> {
-			BeforeAdviceDemo(accountDAO, membershipDAO);
+			// BeforeAdviceDemo(accountDAO, membershipDAO);
+			AfterAdviceDemo(accountDAO);
 		};
 	}
 
@@ -31,5 +34,13 @@ public class AopApplication {
 		accountDAO.getServiceCode();
 		membershipDAO.addAccount();
 		membershipDAO.doNothing();
+	}
+
+	private void AfterAdviceDemo(AccountDAO accountDAO) {
+		List<Account> accounts = accountDAO.findAccounts();
+		System.out.println("\n\nMain Program: Demoing the After Advice");
+		System.out.println("----");
+		System.out.println(accounts);
+		System.out.println("\n");
 	}
 }

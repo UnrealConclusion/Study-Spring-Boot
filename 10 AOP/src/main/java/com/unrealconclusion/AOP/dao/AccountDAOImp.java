@@ -1,5 +1,8 @@
 package com.unrealconclusion.AOP.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.unrealconclusion.AOP.Account;
@@ -38,6 +41,15 @@ public class AccountDAOImp implements AccountDAO {
     public void setServiceCode(String serviceCode) {
         System.out.println(getClass() + ": Setting service code");
         this.serviceCode = serviceCode;
+    }
+
+    @Override
+    public List<Account> findAccounts() {
+        List<Account> myAccounts = new ArrayList<>();
+        myAccounts.add(new Account("Patrick", "Gold"));
+        myAccounts.add(new Account("Sandy", "Gold"));
+        myAccounts.add(new Account("Squidward", "Bronze"));
+        return myAccounts;
     }
 
 }

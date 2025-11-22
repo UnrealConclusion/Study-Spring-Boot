@@ -1,6 +1,10 @@
 package com.unrealconclusion.AOP.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -31,5 +35,20 @@ public class MyDemoLoggingAspect {
                 System.out.println("Account level: " + account.getLevel());
             }
         } 
+    }
+
+    @AfterReturning(
+        pointcut = "execution(* com.unrealconclusion.AOP.dao.AccountDAO.findAccounts(..))",
+        returning = "result" // must match parameter 
+    )
+    public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
+        System.out.println("\\n=====>>> Results: " + result);
+
+        // modify all the names to be uppercase 
+        for (Account account: result) {
+            account.setName(account.getName().toUpperCase());
+        }
     }
 }
