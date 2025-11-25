@@ -45,11 +45,23 @@ public class AccountDAOImp implements AccountDAO {
 
     @Override
     public List<Account> findAccounts() {
+        
+        // calls the other find account without throwing an acception
+        return this.findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean tripWire) {
+
+        // throws an exception for demostration purposes
+        if (tripWire) {
+            throw new RuntimeException("Boom!"); // trip over the wire
+        }
+
         List<Account> myAccounts = new ArrayList<>();
         myAccounts.add(new Account("Patrick", "Gold"));
         myAccounts.add(new Account("Sandy", "Gold"));
         myAccounts.add(new Account("Squidward", "Bronze"));
         return myAccounts;
     }
-
 }
